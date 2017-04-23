@@ -48,6 +48,18 @@ notify:
 
 - For more details, check out the [CircleCI docs](https://circleci.com/docs/1.0/configuration/#notify)
 
+## Usage
+
+Usage is pretty straighforward.
+
+Provided that you've correctly configure everything above, upon the completion of a build on CircleCI, the app sends a Slack message to the associated user notifying them of the completed build.
+
+**Quick tips:**
+
+- Problems with the app will be logged in `app.log` on the project directory.
+
+- You can check if the app is up by sending a `GET` request to `/`. It should return `PONG`.
+
 ## Testing
 
 Tested using [rspec](http://rspec.info/). To run the tests, just run `bundle exec rspec`.
