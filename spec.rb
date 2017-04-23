@@ -16,6 +16,7 @@ describe 'app' do
   describe 'GET /' do
     it 'returns PONG' do
       get '/' do 
+        expect(last_response.body).to eq('PONG')
       end
     end
   end
@@ -47,10 +48,16 @@ describe 'app' do
       }
     }
 
+    let(:slack_response) {
+      {
+        'ok'=>true
+      }
+    }
+
     context 'has valid secrets' do
       before :each do
         expect_any_instance_of(Sinatra::Application).to receive(:load_secrets).and_return(secrets)
-        expect_any_instance_of(Sinatra::Application).to receive(:send_slack_message).and_return(true)
+        expect_any_instance_of(Sinatra::Application).to receive(:send_slack_message).and_return(slack_response)
       end
 
       it 'posts properly' do
