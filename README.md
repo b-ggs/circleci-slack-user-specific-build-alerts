@@ -2,6 +2,8 @@
 
 Get CircleCI build alerts for your own builds on Slack!
 
+![](http://i.imgur.com/j2Ip1zy.png)
+
 Why? The [current CircleCI Slack integration](https://slack.com/apps/A0F7VRE7N-circleci) is too noisy, as it gives build alerts for all branches in one Slack channel, which then tends to be ignored and muted by the team because of the sheer amount of build alerts coming in.
 
 This sends build alerts directly to the person who initiated the build (via @slackbot), eliminating the noise and lessening the number of alerts received by one user.
@@ -44,4 +46,12 @@ notify:
     - url: http://where-you-hosted-your-app.com/
 ```
 
-For more details, check out the [CircleCI docs](https://circleci.com/docs/1.0/configuration/#notify)
+- For more details, check out the [CircleCI docs](https://circleci.com/docs/1.0/configuration/#notify)
+
+## Testing
+
+Tested using [rspec](http://rspec.info/). To run the tests, just run `bundle exec rspec`.
+
+## Support
+
+Feel free to send in [issues](https://github.com/b-ggs/circleci-slack-user-specific-build-alerts/issues) and [pull requests](https://github.com/b-ggs/circleci-slack-user-specific-build-alerts/pulls).
