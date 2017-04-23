@@ -15,6 +15,6 @@ module ApplicationHelper
     File.open 'app.log', 'a+' do |f|
       f.puts message
     end
-    STDERR.puts message
+    $stderr.puts message
   end
 end

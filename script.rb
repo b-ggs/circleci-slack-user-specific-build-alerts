@@ -12,7 +12,6 @@ helpers SlackHelper
 helpers CircleHelper
 
 get '/' do
-  log 'foo', 123
   "PONG"
 end
 
@@ -21,7 +20,10 @@ before '/' do
     secrets = load_secrets
     @users = secrets['users']
     @slack_token = secrets['slack_token']
-    halt 400 if @users.nil? || @users.empty? || @slack_token.nil? || @slack_token.empty?
+    if @users.nil? || @users.empty? || @slack_token.nil? || @slack_token.empty?
+      log 'There is a problem with your secrets file.', nil
+      halt 400
+    end
   end
 end
 
