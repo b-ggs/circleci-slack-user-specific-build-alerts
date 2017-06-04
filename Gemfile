@@ -4,8 +4,14 @@ source "https://rubygems.org"
 gem 'sinatra'
 gem 'thin'
 gem 'json'
-gem 'rack-test'
 gem 'httparty'
-gem 'rspec'
-# gem 'byebug'
-# gem 'pry-byebug'
+
+group :test do
+  gem 'rspec'
+  gem 'rack-test'
+end
+
+group :development do
+  gem 'byebug'
+  gem 'pry-byebug'
+end
