@@ -1,18 +1,19 @@
-FROM base
+FROM ruby:2.3
 
 MAINTAINER boggs <hello@boggs.xyz>
 
-RUN apt-get update
-RUN apt-get install -y --force-yes build-essential wget git
-RUN apt-get install -y --force-yes zlib1g-dev libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt-dev
-RUN apt-get clean
+RUN gem install bundler -v '1.15.1'
 
-RUN wget -P /root/src https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.gz
-RUN cd /root/src
-RUN tar xvf ruby-2.2.2.tar.gz
-RUN cd /root/src/ruby-2.3.1
-RUN ./configure
-RUN make install
+RUN mkdir /root/app
+WORKDIR /root/app
 
-RUN gem update --system
-RUN gem install bundler
+COPY Gemfile .
+COPY secrets.yml .
+COPY app.rb .
+RUN mkdir helpers
+COPY helpers helpers
+
+RUN bundle install --without development test
+
+EXPOSE 4567
+CMD ["ruby", "app.rb"]
