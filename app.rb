@@ -34,7 +34,7 @@ post '/' do
   payload = response['payload']
 
   build_num = payload['build_num']
-  vcs_login = payload['all_commit_details'][0]['author_login']
+  vcs_login = payload['user']['login']
   slack_username = @users[vcs_login]
 
   if slack_username.nil?

@@ -26,6 +26,9 @@ describe 'POST /' do
         build_url: 'https://oval-ci.com/build/123',
         branch: 'feature/foo',
         build_time_millis: '100',
+        user: {
+          login: 'b-ggs'
+        },
         all_commit_details: [{
           author_login: 'b-ggs',
           commit: '123',
@@ -68,7 +71,7 @@ describe 'POST /' do
     end
 
     it 'logs when vcs login doesn\'t have an associated Slack username' do
-      circle_payload[:payload][:all_commit_details][0][:author_login] = 'not-boggs'
+      circle_payload[:payload][:user][:login] = 'not-boggs'
 
       expect_any_instance_of(app).to receive(:log).with('User not-boggs has no associated Slack username.', '123')
 

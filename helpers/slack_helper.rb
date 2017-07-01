@@ -4,11 +4,12 @@ SLACK_API_POST_MESSAGE_URL = 'https://slack.com/api/chat.postMessage'
 
 module SlackHelper
   def build_slack_message(build_details, slack_username)
-    text = if build_details[:status] == 'success'
-             'Your build passed!'
-           else
-             'There was a problem with your build.'
-           end
+    text = 
+      if build_details[:status] == 'success'
+        'Your build passed!'
+      else
+        'There was a problem with your build.'
+      end
     attachments = [
       {
         title: 'Build details',
@@ -25,12 +26,12 @@ module SlackHelper
           },
           {
             title: 'Build Number',
-            value: "<#{build_details[:build_url]}|#{build_details[:build_num]}>",
+            value: "<#{build_details[:build_url]}|##{build_details[:build_num]}> (triggered by #{build_details[:vcs_login]})",
             short: true
           },
           {
-            title: 'Commit',
-            value: "<#{build_details[:vcs_commit_url]}|#{build_details[:vcs_commit_hash]}>",
+            title: 'Last Commit',
+            value: "<#{build_details[:vcs_commit_url]}|#{build_details[:vcs_commit_hash]}> by #{build_details[:vcs_commit_login]}",
             short: true
           }
         ]
