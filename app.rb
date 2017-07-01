@@ -11,8 +11,10 @@ helpers ApplicationHelper
 helpers SlackHelper
 helpers CircleHelper
 
+set :bind, '0.0.0.0'
+
 get '/' do
-  "PONG"
+  'PONG'
 end
 
 before '/' do
